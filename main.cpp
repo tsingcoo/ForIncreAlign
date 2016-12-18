@@ -1,6 +1,7 @@
 #include "pre_process.h"
 #include "distance.h"
 #include "infer_align.h"
+#include "infer_align2.h"
 #include "vocab.h"
 #include "two_vocab_infer_align.h"
 #include "two_vocab_infer_align.h"
@@ -31,20 +32,27 @@ int main() {
 
 //    要非常注意，这类程序不能偷懒之定义一个对象，这会使得内部的私有成员变量存储的数据一直往上加
     PrePro p_ch;
-    p_ch.readFile("/Users/wangql/windows/119/200w_48/LDC.48.ch.vcb");
-    p_ch.corpus2Index("/Users/wangql/windows/119/200w_48/corpus.ch", "/Users/wangql/windows/119/200w_48/corpus.ch.index");
+    p_ch.readFile("/Users/wangql/windows/119/16/corpus.incre.ch.vcb");
+    p_ch.corpus2Index("/Users/wangql/windows/119/16/corpus.ch", "/Users/wangql/windows/119/16/corpus.ch.index");
 
     PrePro p_en;
-    p_en.readFile("/Users/wangql/windows/119/200w_48/LDC.48.en.vcb");
-    p_en.corpus2Index("/Users/wangql/windows/119/200w_48/corpus.en", "/Users/wangql/windows/119/200w_48/corpus.en.index");
+    p_en.readFile("/Users/wangql/windows/119/16/corpus.incre.en.vcb");
+    p_en.corpus2Index("/Users/wangql/windows/119/16/corpus.en", "/Users/wangql/windows/119/16/corpus.en.index");
 
 
 //    利用概率进行去推理491句
-    InferAlign ia;
-    ia.ReadTTable("/Users/wangql/windows/119/200w_48/s2t64.t1.5");
-    ia.ReadCorpusIndexCh("/Users/wangql/windows/119/200w_48/corpus.ch.index");
-    ia.ReadCorpusIndexEn("/Users/wangql/windows/119/200w_48/corpus.en.index");
-    ia.OutputAlign("/Users/wangql/windows/119/200w_48/infer.align");
+    InferAlign ia;//model1推理
+    ia.ReadTTable("/Users/wangql/windows/119/16/s2t64.incre.t1.5");
+    ia.ReadCorpusIndexCh("/Users/wangql/windows/119/16/corpus.ch.index");
+    ia.ReadCorpusIndexEn("/Users/wangql/windows/119/16/corpus.en.index");
+    ia.OutputAlign("/Users/wangql/windows/119/16/infer.align");
+
+    InferAlign2 ia2;
+    ia2.ReadTTable("/Users/wangql/windows/119/16/s2t64.incre.t2.5");
+    ia2.ReadATable("/Users/wangql/windows/119/16/s2t64.incre.a2.5");
+    ia2.ReadCorpusIndexCh("/Users/wangql/windows/119/16/corpus.ch.index");
+    ia2.ReadCorpusIndexEn("/Users/wangql/windows/119/16/corpus.en.index");
+    ia2.OutputAlign("")
 
 
 

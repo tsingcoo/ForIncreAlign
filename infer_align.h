@@ -17,9 +17,9 @@ public:
     void ReadTTable(std::string inputFile);
     void ReadCorpusIndexCh(std::string inputFile);
     void ReadCorpusIndexEn(std::string inputFile);
-    void OutputAlign(std::string outputFile);
+    virtual void OutputAlign(std::string outputFile);
 
-private:
+public:
     std::unordered_map<int, std::unordered_map<int, double >> t_table_;
     std::vector<std::vector<int>> corpus_index_ch_;
     std::vector<std::vector<int>> corpus_index_en_;
