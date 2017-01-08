@@ -19,7 +19,8 @@ public:
         ConstrucATable();
     }
     void ConstrucATable();
-    void ReadATable(std::string inputFile);
+    void ReadGizaATable(std::string inputFile);
+    void ReadMyATable(std::string inputFile);
     void OutputAlign(std::string outputFile);
 
 public:

@@ -4,7 +4,7 @@
 
 #include "infer_align2.h"
 
-void InferAlign2::ReadATable(std::string inputFile) {
+void InferAlign2::ReadGizaATable(std::string inputFile) {
     std::ifstream fin(inputFile);
     std::string line;
     int position_ch;
@@ -22,10 +22,28 @@ void InferAlign2::ReadATable(std::string inputFile) {
         iss >> prop_a;
 
         a_table_[length_ch][position_en][position_ch] = prop_a;
-
-        fin.close();
     }
+    fin.close();
 
+}
+
+void InferAlign2::ReadMyATable(std::string inputFile) {
+    std::ifstream fin(inputFile);
+    std::string line;
+    int length_ch;
+    int position_en;
+    int position_ch;
+    double prop_a;
+
+    while (std::getline(fin, line)){
+        std::istringstream iss(line);
+        iss>>length_ch;
+        iss>>position_en;
+        iss>>position_ch;
+        iss>>prop_a;
+        a_table_[length_ch][position_en][position_ch] = prop_a;
+    }
+    fin.close();
 }
 
 void InferAlign2::ConstrucATable() {
@@ -76,3 +94,5 @@ void InferAlign2::OutputAlign(std::string outputFile) {
     }
     fout.close();
 }
+
+
