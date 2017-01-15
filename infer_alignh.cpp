@@ -213,11 +213,13 @@ void InferAlignh::ForwardBackwardTraining(std::vector<int> &v_ch, std::vector<in
         std::transform(betainit.begin(), betainit.end(), betainit.begin(), std::bind1st(std::multiplies<double>(), I));
 
     } else {
+
         double sum_alphainit = 0.0;
         for (int i = 0; i != I / 2 + 1; ++i) {
             alphainit[i] = ai_[I / 2][i];
             sum_alphainit += alphainit[i];
         }
+
         for (int i = I / 2 + 1; i != I; ++i) {
             alphainit[i] = 0.0;
         }
@@ -402,8 +404,10 @@ void InferAlignh::HMMRealViterbi(std::string output_file, std::vector<int> &v_ch
         }
     }
 
+
     std::ofstream fout(output_file, std::ios_base::app);//接着写
     bool firstword = true;
+
     for (int j = 1; j <= J; ++j) {
         if (viterbi_alignment_[j]) {
             if (firstword) {
@@ -411,11 +415,16 @@ void InferAlignh::HMMRealViterbi(std::string output_file, std::vector<int> &v_ch
             } else {
                 fout << " ";
             }
+            //中英输出格式
             fout << viterbi_alignment_[j] - 1 << "-" << j - 1;
+
+            //英中输出格式
+//            fout << j - 1 << "-" << viterbi_alignment_[j] - 1;
         }
     }
     fout << std::endl;
     fout.close();
+
 }
 
 void InferAlignh::EMLoop() {
@@ -424,8 +433,9 @@ void InferAlignh::EMLoop() {
         const int l = (int) corpus_index_ch_[i].size();
         const int I = 2 * (l - 1);
         std::vector<double> betainit_global(I, 0.0);
-        ForwardBackwardTraining(corpus_index_ch_[i], corpus_index_en_[i], betainit_global, 0);
-        HMMRealViterbi("/Users/wangql/Desktop/hmm_5.26.infer.align", corpus_index_ch_[i], corpus_index_en_[i],
+        ForwardBackwardTraining(corpus_index_ch_[i], corpus_index_en_[i], betainit_global, 0);//这里出了问题
+        HMMRealViterbi("/Users/wangql/Desktop/hmm_5.26.infer.t2s.align", corpus_index_ch_[i], corpus_index_en_[i],
                        betainit_global, 0);
+
     }
 }

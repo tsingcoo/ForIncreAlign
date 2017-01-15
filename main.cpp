@@ -32,13 +32,13 @@ int main() {
 
 
 //    要非常注意，这类程序不能偷懒之定义一个对象，这会使得内部的私有成员变量存储的数据一直往上加
-//    PrePro p_ch;
-//    p_ch.readFile("/Users/wangql/Desktop/corpus.ch.vcb");
-//    p_ch.corpus2Index("/Users/wangql/windows/119/26/corpus.ch", "/Users/wangql/windows/119/26/corpus.ch.index");
-//
-//    PrePro p_en;
-//    p_en.readFile("/Users/wangql/Desktop/corpus.en.vcb");
-//    p_en.corpus2Index("/Users/wangql/windows/119/26/corpus.en", "/Users/wangql/windows/119/26/corpus.en.index");
+    PrePro p_ch;
+    p_ch.readFile("/Users/wangql/Desktop/corpus.en.t2s.vcb");
+    p_ch.corpus2Index("/Users/wangql/windows/119/26/corpus.en", "/Users/wangql/windows/119/26/corpus.en.t2s.index");
+
+    PrePro p_en;
+    p_en.readFile("/Users/wangql/Desktop/corpus.ch.t2s.vcb");
+    p_en.corpus2Index("/Users/wangql/windows/119/26/corpus.ch", "/Users/wangql/windows/119/26/corpus.ch.t2s.index");
 
 
 //    利用概率进行去推理491句
@@ -57,13 +57,13 @@ int main() {
 //    ia2.OutputAlign("/Users/wangql/windows/119/26/infer.1610.align");
 
     InferAlignh iah;
-    iah.ReadTTable("/Users/wangql/Desktop/hmm_26_5.t");
-    iah.ReadCorpusIndexCh("/Users/wangql/windows/119/26/corpus.ch.index");
-    iah.ReadCorpusIndexEn("/Users/wangql/windows/119/26/corpus.en.index");
+    iah.ReadTTable("/Users/wangql/Desktop/hmm_26_5_t2s.t");
+    iah.ReadCorpusIndexCh("/Users/wangql/windows/119/26/corpus.en.t2s.index");
+    iah.ReadCorpusIndexEn("/Users/wangql/windows/119/26/corpus.ch.t2s.index");
     iah.ConstructAlCount_();
-    iah.ReadBackgroundAlCount_("/Users/wangql/Desktop/hmm_26_5.AlCount");
-    iah.ReadBackgroundai_("/Users/wangql/Desktop/hmm_26_5.ai");
-    iah.ReadBackgroundbi_("/Users/wangql/Desktop/hmm_26_5.bi");
+    iah.ReadBackgroundAlCount_("/Users/wangql/Desktop/hmm_26_5_t2s.AlCount");
+    iah.ReadBackgroundai_("/Users/wangql/Desktop/hmm_26_5_t2s.ai");
+    iah.ReadBackgroundbi_("/Users/wangql/Desktop/hmm_26_5_t2s.bi");
     iah.ConstructNetN();
     iah.ConstructNetE();
     iah.EMLoop();

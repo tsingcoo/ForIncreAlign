@@ -2,7 +2,7 @@
 // Created by 王青龙 on 07/11/2016.
 //
 
-#include <curses.h>
+//#include <curses.h>
 #include "two_vocab_infer_align.h"
 
 void TwoVocab::ReadVocabs(std::string vocab_train_file, std::string vocab_test_file) {
