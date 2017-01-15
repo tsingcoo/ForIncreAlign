@@ -6,6 +6,7 @@
 #define INCREALIGN_INFER_ALIGNH_H
 
 #include "infer_align.h"
+#include <algorithm>
 
 const int kLongSentence = 101;
 const double kProbSmooth = 1e-4;

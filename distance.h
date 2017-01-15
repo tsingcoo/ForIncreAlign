@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 class Distance{
     std::unordered_map<std::string, std::vector<double>> embedding_list;
