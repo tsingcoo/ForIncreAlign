@@ -74,7 +74,8 @@ InferAlignh::InitNetN(std::vector<int> &v_ch, std::vector<int> &v_en, const int 
 //            net_n_[i][j] = std::max(new_table_t_[v_ch[i + 1]][v_en[j]], kProbSmooth);
 
             if ((t_table_.find(v_ch[i + 1]) != t_table_.end()) &&
-                (t_table_[v_ch[i + 1]].find(v_en[j]) != t_table_[v_ch[i + 1]].end())) {
+                (t_table_[v_ch[i + 1]].find(v_en[j]) != t_table_[v_ch[i + 1]].end()) &&
+                (word_freq_ch_[v_ch[i + 1]] > 10)) {//这样改过之后相当于对于出现一次的概率也当做没出现过进行处理.这里的阈值10可以换成其他值，取决于对稀疏词的定义
                 net_n_[i][j] = std::max(t_table_[v_ch[i + 1]][v_en[j]], kProbSmooth);
             } else {
                 net_n_[i][j] = kProbSmooth;
@@ -375,10 +376,14 @@ void InferAlignh::HMMRealViterbi(std::string output_file, std::vector<int> &v_ch
             double this_node = net_n_[ti][j];
             for (int pi = 0; pi != I; ++pi, ++prev_alpha) {
                 double alpha_increment = *prev_alpha * net_e_[pi][ti] * this_node;
+
+
                 if (alpha_increment > *cur_alpha) {
                     (*cur_alpha) = alpha_increment;
                     (*cur_bp) = prev_alpha;
                 }
+
+
             }
         }
     }
@@ -434,7 +439,7 @@ void InferAlignh::EMLoop() {
         const int I = 2 * (l - 1);
         std::vector<double> betainit_global(I, 0.0);
         ForwardBackwardTraining(corpus_index_ch_[i], corpus_index_en_[i], betainit_global, 0);//这里出了问题
-        HMMRealViterbi("/Users/wangql/Desktop/hmm_5.26.infer.t2s.align", corpus_index_ch_[i], corpus_index_en_[i],
+        HMMRealViterbi("/Users/wangql/Desktop/merged_hmm/hmm_5.align", corpus_index_ch_[i], corpus_index_en_[i],
                        betainit_global, 0);
 
     }

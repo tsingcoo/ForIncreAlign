@@ -72,7 +72,7 @@ void InferAlign2::OutputAlign(std::string outputFile) {
             tmp_max = 0.0;
             tmp_i = 0;
             for(auto i = 0; i < corpus_index_ch_[line].size(); ++i){
-                double v = t_table_[corpus_index_ch_[line][i]][corpus_index_en_[line][j]]*a_table_[l][j][i];
+                double v = t_table_[corpus_index_ch_[line][i]][corpus_index_en_[line][j]]*a_table_[l][j][i];//难道这里我没有考虑能不能找到这个词对的概率？
                 if(tmp_max < v){
                     tmp_max = v;
                     tmp_i = i;

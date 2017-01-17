@@ -97,5 +97,37 @@ void InferAlign::OutputAlign(std::string outputFile) {
     fout.close();
 }
 
+void InferAlign::ReadGizaVcbCh(std::string inputFile) {
+    std::ifstream fin(inputFile);
+    std::string line;
+    int index;
+    std::string word;
+    int freq;
+    while (std::getline(fin, line)) {
+        std::istringstream iss(line);
+        iss>>index;
+        iss>>word;
+        iss>>freq;
+        word_freq_ch_.insert({index, freq});
+    }
+    fin.close();
+}
+
+void InferAlign::ReadGizaVcbEn(std::string inputFile) {
+    std::ifstream fin(inputFile);
+    std::string line;
+    int index;
+    std::string word;
+    int freq;
+    while (std::getline(fin, line)) {
+        std::istringstream iss(line);
+        iss>>index;
+        iss>>word;
+        iss>>freq;
+        word_freq_en_.insert({index, freq});
+    }
+    fin.close();
+}
+
 
 

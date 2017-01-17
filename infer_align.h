@@ -19,10 +19,17 @@ public:
     void ReadCorpusIndexEn(std::string inputFile);
     virtual void OutputAlign(std::string outputFile);
 
+
+    void ReadGizaVcbCh(std::string inputFile);
+    void ReadGizaVcbEn(std::string inputFile);
+
 public:
     std::unordered_map<int, std::unordered_map<int, double >> t_table_;
     std::vector<std::vector<int>> corpus_index_ch_;
     std::vector<std::vector<int>> corpus_index_en_;
+
+    std::unordered_map<int, int> word_freq_ch_;
+    std::unordered_map<int, int> word_freq_en_;
 };
 
 #endif //INCREALIGN_INFERALIGN_H
