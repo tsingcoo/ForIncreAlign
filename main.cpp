@@ -34,20 +34,26 @@ int main() {
 
 //    要非常注意，这类程序不能偷懒之定义一个对象，这会使得内部的私有成员变量存储的数据一直往上加
     PrePro p_ch;
-    p_ch.readFile("/Users/wangql/Desktop/merged_hmm/merged.ch.vcb");
-    p_ch.corpus2Index("/Users/wangql/Desktop/merged_hmm/corpus.ch", "/Users/wangql/Desktop/merged_hmm/corpus.ch.index");
+    p_ch.readFile(
+            "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.incre.ch.vcb");
+    p_ch.corpus2Index("/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.ch",
+                      "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.ch.index");
 
     PrePro p_en;
-    p_en.readFile("/Users/wangql/Desktop/merged_hmm/merged.en.vcb");
-    p_en.corpus2Index("/Users/wangql/Desktop/merged_hmm/corpus.en", "/Users/wangql/Desktop/merged_hmm/corpus.en.index");
+    p_en.readFile(
+            "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.incre.en.vcb");
+    p_en.corpus2Index("/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.en",
+                      "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.en.index");
 
 
 //    利用概率进行去推理491句
-//    InferAlign ia;//model1推理
-//    ia.ReadTTable("/Users/wangql/windows/119/16/s2t64.incre.t1.5");
-//    ia.ReadCorpusIndexCh("/Users/wangql/windows/119/16/corpus.ch.index");
-//    ia.ReadCorpusIndexEn("/Users/wangql/windows/119/16/corpus.en.index");
-//    ia.OutputAlign("/Users/wangql/windows/119/16/infer.align");
+    InferAlign ia;//model1推理
+    ia.ReadTTable("/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/s2t64.incre.t1.5");
+    ia.ReadCorpusIndexCh(
+            "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.ch.index");
+    ia.ReadCorpusIndexEn(
+            "/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/corpus.en.index");
+    ia.OutputAlign("/Users/wangql/Library/Mobile Documents/com~apple~CloudDocs/WordAlign/data/infer.incre.align");
 
 //    InferAlign2 ia2;//model2推理
 //    ia2.ReadTTable("/Users/wangql/Desktop/model2_5_em4.t");
@@ -57,20 +63,19 @@ int main() {
 //    ia2.ReadCorpusIndexEn("/Users/wangql/windows/119/26/corpus.en.index");
 //    ia2.OutputAlign("/Users/wangql/windows/119/26/infer.1610.align");
 
-    InferAlignh iah;
-
-    iah.ReadGizaVcbCh("/Users/wangql/Desktop/merged_hmm/giza.merged.ch.vcb");
-    iah.ReadGizaVcbEn("/Users/wangql/Desktop/merged_hmm/giza.merged.en.vcb");
-    iah.ReadTTable("/Users/wangql/Desktop/merged_hmm/hmm.merged.t");
-    iah.ReadCorpusIndexCh("/Users/wangql/Desktop/merged_hmm/corpus.ch.index");
-    iah.ReadCorpusIndexEn("/Users/wangql/Desktop/merged_hmm/corpus.en.index");
-    iah.ConstructAlCount_();
-    iah.ReadBackgroundAlCount_("/Users/wangql/Desktop/merged_hmm/hmm.merged.AlCount");
-    iah.ReadBackgroundai_("/Users/wangql/Desktop/merged_hmm/hmm.merged.ai");
-    iah.ReadBackgroundbi_("/Users/wangql/Desktop/merged_hmm/hmm.merged.bi");
-    iah.ConstructNetN();
-    iah.ConstructNetE();
-    iah.EMLoop();
+//    InferAlignh iah;//modelh推理
+//    iah.ReadGizaVcbCh("/Users/wangql/Desktop/merged_hmm/giza.merged.ch.vcb");
+//    iah.ReadGizaVcbEn("/Users/wangql/Desktop/merged_hmm/giza.merged.en.vcb");
+//    iah.ReadTTable("/Users/wangql/Desktop/merged_hmm/hmm.merged.t");
+//    iah.ReadCorpusIndexCh("/Users/wangql/Desktop/merged_hmm/corpus.ch.index");
+//    iah.ReadCorpusIndexEn("/Users/wangql/Desktop/merged_hmm/corpus.en.index");
+//    iah.ConstructAlCount_();
+//    iah.ReadBackgroundAlCount_("/Users/wangql/Desktop/merged_hmm/hmm.merged.AlCount");
+//    iah.ReadBackgroundai_("/Users/wangql/Desktop/merged_hmm/hmm.merged.ai");
+//    iah.ReadBackgroundbi_("/Users/wangql/Desktop/merged_hmm/hmm.merged.bi");
+//    iah.ConstructNetN();
+//    iah.ConstructNetE();
+//    iah.EMLoop();
 
 
 
